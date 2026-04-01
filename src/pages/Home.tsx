@@ -32,16 +32,24 @@ function WavyLines() {
     }
     resize()
 
+    // Listen on window so overlapping z-index elements don't block events
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
-      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      // Only track if within canvas bounds
+      if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        mouseRef.current = { x, y }
+      } else {
+        mouseRef.current = { x: -9999, y: -9999 }
+      }
     }
     const onMouseLeave = () => {
       mouseRef.current = { x: -9999, y: -9999 }
     }
 
-    canvas.addEventListener('mousemove', onMouseMove)
-    canvas.addEventListener('mouseleave', onMouseLeave)
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseleave', onMouseLeave)
     window.addEventListener('resize', resize)
 
     const SPACING = 22
@@ -65,27 +73,38 @@ function WavyLines() {
         for (let seg = 0; seg < SEGMENTS; seg++) {
           const y0 = (seg / SEGMENTS) * h
           const y1 = ((seg + 1) / SEGMENTS) * h
-          const x0 = baseX + Math.sin(y0 / 60 + t * 0.6 + symmetricPhase) * 10
-          const x1 = baseX + Math.sin(y1 / 60 + t * 0.6 + symmetricPhase) * 10
+          const waveX0 = baseX + Math.sin(y0 / 60 + t * 0.6 + symmetricPhase) * 10
+          const waveX1 = baseX + Math.sin(y1 / 60 + t * 0.6 + symmetricPhase) * 10
+
+          // Mouse repulsion — push lines away from cursor
+          const REPEL_RADIUS = 250
+          const REPEL_STRENGTH = 20
+
+          const dx0 = waveX0 - mx
+          const dy0 = y0 - my
+          const dist0 = Math.sqrt(dx0 * dx0 + dy0 * dy0) || 1
+          const repel0 = dist0 < REPEL_RADIUS ? (1 - dist0 / REPEL_RADIUS) ** 2.0 : 0
+          const x0 = waveX0 + (dx0 / dist0) * repel0 * REPEL_STRENGTH
+
+          const dx1 = waveX1 - mx
+          const dy1 = y1 - my
+          const dist1 = Math.sqrt(dx1 * dx1 + dy1 * dy1) || 1
+          const repel1 = dist1 < REPEL_RADIUS ? (1 - dist1 / REPEL_RADIUS) ** 2.0 : 0
+          const x1 = waveX1 + (dx1 / dist1) * repel1 * REPEL_STRENGTH
 
           // Vertical fade
           const fadeProgress = seg / (SEGMENTS * 0.78)
           const verticalFade = Math.max(0, 1 - fadeProgress * fadeProgress)
           if (verticalFade <= 0) break
 
-          // Mouse glow
-          const distX = x0 - mx
-          const distY = y0 - my
-          const dist = Math.sqrt(distX * distX + distY * distY)
-          const glow = Math.max(0, 1 - dist / 220)
-
-          const alpha = (0.38 + glow * 0.5) * verticalFade
+          const glow = Math.max(repel0, repel1)
+          const alpha = (0.38 + glow * 0.45) * verticalFade
 
           ctx!.beginPath()
           ctx!.moveTo(x0, y0)
           ctx!.lineTo(x1, y1)
           ctx!.strokeStyle = `rgba(180, 210, 255, ${alpha})`
-          ctx!.lineWidth = 0.7 + glow * 0.9
+          ctx!.lineWidth = 0.7 + glow * 1.2
           ctx!.stroke()
         }
       }
@@ -97,8 +116,8 @@ function WavyLines() {
     draw()
 
     return () => {
-      canvas.removeEventListener('mousemove', onMouseMove)
-      canvas.removeEventListener('mouseleave', onMouseLeave)
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseleave', onMouseLeave)
       window.removeEventListener('resize', resize)
       cancelAnimationFrame(rafRef.current)
     }
@@ -236,6 +255,103 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Enterprise section — sticky left + scrollable right */}
+      <section className="mx-35 border-x border-dashed border-white/15">
+        <div className="flex">
+
+          {/* LEFT — sticky panel */}
+          <div className="w-1/2 border-r border-dashed border-white/15">
+            <div
+              className="sticky top-0 flex h-screen flex-col justify-between p-12"
+              style={{
+                background: 'linear-gradient(160deg, rgba(29,78,216,0.9) 0%, rgba(7,8,16,1) 70%)',
+              }}
+            >
+              <div />
+              <div>
+                <motion.span
+                  variants={fadeUp} initial="hidden" whileInView="visible"
+                  viewport={{ once: true }} custom={0}
+                  className="mb-6 inline-block bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
+                >
+                  Services
+                </motion.span>
+                <motion.h2
+                  variants={fadeUp} initial="hidden" whileInView="visible"
+                  viewport={{ once: true }} custom={1}
+                  className="mb-6 text-4xl font-bold leading-tight"
+                >
+                  Building digital experiences that move fast
+                </motion.h2>
+                <motion.p
+                  variants={fadeUp} initial="hidden" whileInView="visible"
+                  viewport={{ once: true }} custom={2}
+                  className="mb-10 text-base leading-relaxed text-white/55"
+                >
+                  We craft high-performance web products — from design systems to full-stack applications — tailored for ambitious brands.
+                </motion.p>
+                <motion.button
+                  variants={fadeUp} initial="hidden" whileInView="visible"
+                  viewport={{ once: true }} custom={3}
+                  className="flex items-center gap-2 border border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors"
+                >
+                  Contact Us <ArrowRight size={12} />
+                </motion.button>
+              </div>
+              <div />
+            </div>
+          </div>
+
+          {/* RIGHT — scrollable cards */}
+          <div className="w-1/2 flex flex-col divide-y divide-dashed divide-white/15">
+            {[
+              {
+                num: '01',
+                title: 'Design & Branding',
+                desc: 'Visual identity systems, UI design, and brand strategy crafted to stand out in competitive markets.',
+              },
+              {
+                num: '02',
+                title: 'Web Development',
+                desc: 'High-performance React applications built with modern tooling, optimized for speed and scalability.',
+              },
+              {
+                num: '03',
+                title: 'Motion & Interaction',
+                desc: 'Animations and micro-interactions that elevate the user experience and make products feel alive.',
+              },
+              {
+                num: '04',
+                title: 'Strategy & Consulting',
+                desc: 'Technical roadmaps and product strategy to help teams move faster and build the right things.',
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.num}
+                variants={fadeUp} initial="hidden" whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }} custom={i}
+                className="group flex flex-col gap-6 p-12 hover:bg-white/3 transition-colors"
+              >
+                {/* Corner brackets */}
+                <div className="relative w-16 h-16">
+                  <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/30" />
+                  <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/30" />
+                  <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/30" />
+                  <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/30" />
+                  <div className="flex h-full items-center justify-center">
+                    <div className="h-8 w-8 rounded-full border border-blue-500/50 bg-blue-500/10" />
+                  </div>
+                </div>
+                <span className="text-xs font-bold text-blue-500 tracking-widest">{card.num}</span>
+                <h3 className="text-xl font-bold uppercase tracking-wide">{card.title}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{card.desc}</p>
+              </motion.div>
+            ))}
           </div>
 
         </div>
