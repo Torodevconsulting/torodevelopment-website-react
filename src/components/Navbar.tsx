@@ -1,8 +1,14 @@
+import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <motion.header
+      className="fixed top-0 left-0 right-0 z-50"
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 1.4, ease: 'easeOut' }}
+    >
       {/* Dashed vertical lines on the container edges */}
       
 
@@ -29,6 +35,6 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
-    </header>
+    </motion.header>
   )
 }

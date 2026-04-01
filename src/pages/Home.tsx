@@ -139,7 +139,11 @@ export default function Home() {
       {/* Hero */}
       <section className="relative h-screen">
         {/* Contained mesh area — black margins visible on sides */}
-        <div className="absolute inset-y-0 left-35 right-35 overflow-hidden rounded-b-2xl">
+        <motion.div
+          className="absolute inset-y-0 left-35 right-35 overflow-hidden rounded-b-2xl"
+          initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.1, ease: 'easeOut' }}
+        >
           {/* Blue radial glow */}
           <div
             className="absolute inset-0"
@@ -149,28 +153,44 @@ export default function Home() {
             }}
           />
           <WavyLines />
-        </div>
+        </motion.div>
 
         {/* Hero content — sits over the full section */}
         <div className="relative z-10 flex h-full flex-col justify-end px-45 pb-20">
           <div className="max-w-2xl">
-            <span className="mb-5 inline-block bg-black px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1, ease: 'easeOut' }}
+              className="mb-5 inline-block bg-black px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
+            >
               This is how we roll
-            </span>
-            <h1 className="mb-4 text-5xl font-bold leading-tight tracking-tight">
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
+              className="mb-4 text-5xl font-bold leading-tight tracking-tight"
+            >
               Toro Development Agency
-            </h1>
-            <p className="mb-10 max-w-xl text-xl leading-relaxed text-white/50">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55, ease: 'easeOut' }}
+              className="mb-10 max-w-xl text-xl leading-relaxed text-white/50"
+            >
               We craft high-performance, beautifully designed digital experiences for ambitious brands.
-            </p>
-            <div className="flex gap-4">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
+              className="flex gap-4"
+            >
               <button className="flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors">
                 Get Started <ArrowRight size={14} />
               </button>
               <button className="flex items-center gap-2 border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white/70 hover:border-white hover:text-white transition-colors">
                 Contact Us <ArrowRight size={14} />
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
