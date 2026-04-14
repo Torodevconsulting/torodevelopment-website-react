@@ -179,7 +179,7 @@ export default function Contact() {
                   viewport={{ once: true }} custom={3}
                   className="flex flex-col gap-3 text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/40"
                 >
-                  <span>hello@torodevelopment.com</span>
+                  
                   <span>Available worldwide · Remote-first</span>
                 </motion.div>
               </div>
