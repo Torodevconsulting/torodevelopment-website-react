@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
-import { motion } from 'motion/react'
+import { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence, useInView } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 
@@ -12,8 +12,187 @@ const fadeUp = {
   }),
 }
 
+const CYCLING_WORDS = ['build', 'create', 'design', 'work']
+
+function CyclingWord() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex(i => (i + 1) % CYCLING_WORDS.length)
+    }, 4400)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <span className="relative inline-block overflow-hidden align-bottom cursor-pointer select-none" style={{ minWidth: '6ch' }}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={CYCLING_WORDS[index]}
+          className="inline-block text-blue-400"
+          style={{ cursor: 'pointer', userSelect: 'none' }}
+          initial={{ y: '100%', opacity: 0.4 }}
+          animate={{ y: '0%', opacity: 1 }}
+          exit={{ y: '-100%', opacity: 0.4 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+        >
+          {CYCLING_WORDS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
+function AnimatedIcon({ index, animate }: { index: number; animate: boolean }) {
+  const d = (delay: number) => ({
+    pathLength: { duration: 1.2, delay, ease: 'easeInOut' as const },
+    opacity:    { duration: 0.15, delay },
+  })
+
+  if (index === 0) {
+    // Globe — meridian ellipse simulates rotation via rx keyframes
+    return (
+      <motion.svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <motion.circle cx="20" cy="20" r="16" stroke="#3b82f6" strokeWidth="1"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+          transition={d(0)}
+        />
+        <motion.ellipse cx="20" cy="20" ry="16" stroke="#3b82f6" strokeWidth="1"
+          initial={{ pathLength: 0, opacity: 0, rx: 8 }}
+          animate={animate ? { pathLength: 1, opacity: 1, rx: [8, 1, 8] } : {}}
+          transition={{ ...d(0.18), rx: { duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 1.5 } }}
+        />
+        <motion.ellipse cx="20" cy="20" rx="16" ry="6" stroke="#3b82f6" strokeWidth="1"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+          transition={d(0.36)}
+        />
+        <motion.line x1="4" y1="20" x2="36" y2="20" stroke="#3b82f6" strokeWidth="1"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+          transition={d(0.54)}
+        />
+      </motion.svg>
+    )
+  }
+
+  if (index === 1) {
+    // Waves — each path oscillates on Y with staggered phase
+    return (
+      <motion.svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        {[8, 14, 20, 26, 32].map((y, i) => (
+          <motion.path
+            key={y}
+            d={`M2 ${y} Q12 ${y - 6} 20 ${y} Q28 ${y + 6} 38 ${y}`}
+            stroke="#3b82f6" strokeWidth="1.2"
+            initial={{ pathLength: 0, opacity: 0, y: 0 }}
+            animate={animate ? { pathLength: 1, opacity: 1, y: [0, -3, 0, 3, 0] } : {}}
+            transition={{
+              ...d(i * 0.18),
+              y: { duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 + i * 0.15 },
+            }}
+          />
+        ))}
+      </motion.svg>
+    )
+  }
+
+  if (index === 2) {
+    // Code brackets — slash slides up/down
+    return (
+      <motion.svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <motion.path d="M16 6 L6 20 L16 34" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+          transition={d(0)}
+        />
+        <motion.path d="M24 6 L34 20 L24 34" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+          transition={d(0.18)}
+        />
+        <motion.line x1="23" y1="4" x2="17" y2="36" stroke="#3b82f6" strokeWidth="1" strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0, y: 0 }}
+          animate={animate ? { pathLength: 1, opacity: 1, y: [0, -4, 0, 4, 0] } : {}}
+          transition={{ ...d(0.36), y: { duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 1.8 } }}
+        />
+      </motion.svg>
+    )
+  }
+
+  // Compass — crosshair group rotates continuously
+  return (
+    <motion.svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <motion.circle cx="20" cy="20" r="16" stroke="#3b82f6" strokeWidth="1"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+        transition={d(0)}
+      />
+      <motion.circle cx="20" cy="20" r="6" stroke="#3b82f6" strokeWidth="1"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={animate ? { pathLength: 1, opacity: 1 } : {}}
+        transition={d(0.18)}
+      />
+      <motion.g
+        style={{ transformOrigin: '20px 20px' }}
+        initial={{ opacity: 0, rotate: 0 }}
+        animate={animate ? { opacity: 1, rotate: 360 } : {}}
+        transition={{
+          opacity: { duration: 0.2, delay: 1.2 },
+          rotate: { duration: 8, repeat: Infinity, ease: 'linear', delay: 1.2 },
+        }}
+      >
+        <line x1="20" y1="4"  x2="20" y2="14" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="20" y1="26" x2="20" y2="36" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="4"  y1="20" x2="14" y2="20" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="26" y1="20" x2="36" y2="20" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" />
+      </motion.g>
+    </motion.svg>
+  )
+}
+
+function ServiceCard({ card, i }: { card: { num: string; title: string; desc: string }; i: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.4 })
+
+  return (
+    <div
+      ref={ref}
+      className="group flex flex-col gap-6 p-12 hover:bg-white/3 transition-colors"
+    >
+      {/* Bracket container — expands on scroll */}
+      <motion.div
+        className="relative overflow-visible"
+        initial={{ width: 12, height: 12 }}
+        animate={isInView ? { width: 80, height: 80 } : {}}
+        transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+      >
+        <span className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/40" />
+        <span className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/40" />
+        <span className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-white/40" />
+        <span className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/40" />
+
+        {/* Icon fades in after expansion */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.3, delay: 0.5 }}
+        >
+          <AnimatedIcon index={i} animate={isInView} />
+        </motion.div>
+      </motion.div>
+
+      <span className="text-xs font-bold text-blue-500 tracking-widest">{card.num}</span>
+      <h3 className="text-xl font-bold uppercase tracking-wide">{card.title}</h3>
+      <p className="text-sm leading-relaxed text-white/50">{card.desc}</p>
+    </div>
+  )
+}
+
 const backedBy = ['QUERTIUM.IO', 'W STUDIOS', 'TORNED STRINGS']
-const advisors = ['Perplexity', 'Microsoft', 'KKR', 'Apple', 'AMD']
+const services = ['Full Stack Development', 'Marketing & Branding', 'AI Solutions', 'Native Apps Development', 'Tracking & Analytics', 'UX/UI Design']
 
 function WavyLines() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -185,7 +364,7 @@ export default function Home() {
               className="flex gap-4"
             >
               <button className="flex items-center gap-2 border border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-colors">
-                Get Started <ArrowRight size={14} />
+                About Us <ArrowRight size={14} />
               </button>
               <button className="flex items-center gap-2 border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white/70 hover:border-white hover:text-white transition-colors">
                 Contact Us <ArrowRight size={14} />
@@ -222,7 +401,7 @@ export default function Home() {
               custom={0}
               className="bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
             >
-              Backed By
+              Our Partners
             </motion.span>
             <div className="flex w-full items-center justify-center divide-x divide-dashed divide-white/15">
               {backedBy.map((name, i) => (
@@ -246,7 +425,7 @@ export default function Home() {
           {/* Divider */}
           <div className="w-full border-t border-dashed border-white/15" />
 
-          {/* Angels & Advisors */}
+          {/* Our Services */}
           <div className="flex flex-col items-center gap-6 w-full">
             <motion.span
               variants={fadeUp}
@@ -256,10 +435,10 @@ export default function Home() {
               custom={0}
               className="bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
             >
-              With Angels and Advisors From
+              What we do Best
             </motion.span>
             <div className="flex w-full items-center justify-center divide-x divide-dashed divide-white/15">
-              {advisors.map((name, i) => (
+              {services.map((name, i) => (
                 <motion.div
                   key={name}
                   variants={fadeUp}
@@ -306,14 +485,14 @@ export default function Home() {
                   viewport={{ once: true }} custom={1}
                   className="mb-6 text-4xl font-bold leading-tight"
                 >
-                  Building digital experiences that move fast
+                  We listen first, then we <CyclingWord />
                 </motion.h2>
                 <motion.p
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={2}
                   className="mb-10 text-base leading-relaxed text-white/55"
                 >
-                  We craft high-performance web products — from design systems to full-stack applications — tailored for ambitious brands.
+                  We offer a full range of digital services shaped around your business — not the other way around. From day one to long-term growth, we're with you every step of the way.
                 </motion.p>
                 <motion.button
                   variants={fadeUp} initial="hidden" whileInView="visible"
@@ -332,45 +511,26 @@ export default function Home() {
             {[
               {
                 num: '01',
-                title: 'Design & Branding',
-                desc: 'Visual identity systems, UI design, and brand strategy crafted to stand out in competitive markets.',
+                title: 'PYMES & Startups',
+                desc: 'From zero to visible. Brand identity, web presence, and a digital strategy built from the ground up — everything you need to launch with confidence and grow from day one.',
               },
               {
                 num: '02',
-                title: 'Web Development',
-                desc: 'High-performance React applications built with modern tooling, optimized for speed and scalability.',
+                title: 'Growing Brands & Companies',
+                desc: 'Scale what\'s working. Fix what\'s not. Performance marketing, full-stack development, and strategic consulting to turn a solid foundation into measurable growth.',
               },
               {
                 num: '03',
-                title: 'Motion & Interaction',
-                desc: 'Animations and micro-interactions that elevate the user experience and make products feel alive.',
+                title: 'Big Enterprises & Innovators',
+                desc: 'Execution at the level your brand demands. High-performance web products and data-driven paid media campaigns, built with the rigor and autonomy that complex organizations require.',
               },
               {
                 num: '04',
                 title: 'Strategy & Consulting',
-                desc: 'Technical roadmaps and product strategy to help teams move faster and build the right things.',
+                desc: 'Clarity before action. Before building anything, we map where you are, where you want to go, and the most direct route to get there — across digital, brand, and performance.',
               },
             ].map((card, i) => (
-              <motion.div
-                key={card.num}
-                variants={fadeUp} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }} custom={i}
-                className="group flex flex-col gap-6 p-12 hover:bg-white/3 transition-colors"
-              >
-                {/* Corner brackets */}
-                <div className="relative w-16 h-16">
-                  <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/30" />
-                  <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/30" />
-                  <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/30" />
-                  <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/30" />
-                  <div className="flex h-full items-center justify-center">
-                    <div className="h-8 w-8 rounded-full border border-blue-500/50 bg-blue-500/10" />
-                  </div>
-                </div>
-                <span className="text-xs font-bold text-blue-500 tracking-widest">{card.num}</span>
-                <h3 className="text-xl font-bold uppercase tracking-wide">{card.title}</h3>
-                <p className="text-sm leading-relaxed text-white/50">{card.desc}</p>
-              </motion.div>
+              <ServiceCard key={card.num} card={card} i={i} />
             ))}
           </div>
 

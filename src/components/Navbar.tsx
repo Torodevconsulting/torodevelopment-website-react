@@ -24,13 +24,13 @@ export default function Navbar() {
         {/* Links */}
         <div className="flex items-center gap-8">
           <a href="#about" className="text-xs font-medium tracking-widest uppercase text-white/60 hover:text-white transition-colors">
-            About
+            About Us
           </a>
           <a href="#services" className="text-xs font-medium tracking-widest uppercase text-white/60 hover:text-white transition-colors">
-            Services
+            Our Services
           </a>
           <button className="flex items-center gap-2 bg-blue-600 px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors">
-            Join Us
+            Contact Us
             <ArrowRight size={12} />
           </button>
         </div>
