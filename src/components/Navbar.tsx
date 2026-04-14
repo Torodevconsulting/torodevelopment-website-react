@@ -23,7 +23,7 @@ export default function Navbar() {
     >
       <nav className="mx-4 sm:mx-10 lg:mx-35 flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 bg-white dark:bg-[#070810] border-b border-black/8 dark:border-white/5">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" onClick={() => navigate('/')}>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#1d1d1f] dark:text-white" />
           </svg>
