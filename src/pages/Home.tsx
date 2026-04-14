@@ -520,6 +520,7 @@ export default function Home() {
                 <motion.button
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={3}
+                  onClick={() => navigate('/contact')}
                   className="flex items-center gap-2 border border-[#1d1d1f]/40 dark:border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                 >
                   Contact Us <ArrowRight size={12} />
