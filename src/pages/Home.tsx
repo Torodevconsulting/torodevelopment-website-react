@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useInView } from 'motion/react'
 import { useTheme } from 'next-themes'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Orbit } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 
 const fadeUp = {
@@ -399,9 +399,7 @@ export default function Home() {
             viewport={{ once: true, amount: 0.5 }}
             custom={0}
           >
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <path d="M4 18h28M18 4l14 14-14 14" stroke="#1d4ed8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <Orbit size={60} className="text-blue-700 dark:text-blue-400" strokeWidth={0.5}/>
           </motion.div>
 
           {/* Backed By */}
