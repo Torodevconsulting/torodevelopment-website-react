@@ -2,10 +2,12 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowRight, Sun, Moon } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const navigate = useNavigate()
 
   // Avoid hydration mismatch — only render icon after mount
   useEffect(() => setMounted(true), [])
@@ -48,7 +50,10 @@ export default function Navbar() {
             </button>
           )}
 
-          <button className="flex items-center gap-2 bg-blue-600 px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors">
+          <button
+            onClick={() => navigate('/contact')}
+            className="flex items-center gap-2 bg-blue-600 px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors"
+          >
             Contact Us
             <ArrowRight size={12} />
           </button>
