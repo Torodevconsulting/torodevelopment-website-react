@@ -2,8 +2,24 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 
 serve(async (req) => {
   try {
-    const { record } = await req.json()
+    const { record, turnstileToken } = await req.json()
 
+    // Validar Turnstile
+    const verification = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        secret: Deno.env.get('TURNSTILE_SECRET_KEY'),
+        response: turnstileToken,
+      }),
+    })
+
+    const verificationData = await verification.json()
+    if (!verificationData.success) {
+      return new Response(JSON.stringify({ error: 'Turnstile verification failed' }), { status: 403 })
+    }
+
+    // Enviar email con Resend
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {

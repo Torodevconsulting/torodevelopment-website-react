@@ -5,6 +5,9 @@ import { ArrowRight, Loader2 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { submitLead } from '@/lib/submitLead'
+import { Turnstile } from '@marsidev/react-turnstile'
+
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -25,6 +28,7 @@ export default function Contact() {
     ? 'linear-gradient(160deg, rgba(29,78,216,0.9) 0%, rgba(7,8,16,1) 70%)'
     : 'linear-gradient(160deg, rgba(29,78,216,0.12) 0%, #f5f5f7 70%)'
 
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -50,6 +54,7 @@ export default function Contact() {
         email: form.email,
         company: form.company || undefined,
         message: form.message,
+        turnstileToken: turnstileToken!,
       })
       setFormState('success')
       setForm({ name: '', phone: '', email: '', company: '', message: '' })
@@ -291,13 +296,17 @@ export default function Contact() {
                   )}
 
                   {/* Submit */}
+                  <Turnstile
+                      siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                      onSuccess={(token) => setTurnstileToken(token)}
+                    />
                   <div className="flex items-center justify-between pt-2">
                     <p className="text-xs text-[#6e6e73] dark:text-white/30">
                       <span className="text-blue-600 dark:text-blue-400">*</span> Required fields
                     </p>
                     <button
                       type="submit"
-                      disabled={formState === 'loading'}
+                      disabled={formState === 'loading' || !turnstileToken}
                       className="flex items-center gap-2 bg-blue-600 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:pointer-events-none"
                     >
                       {formState === 'loading' ? (
