@@ -13,7 +13,7 @@ const DEFAULT_IMAGE = 'https://torodevelop.com/og-image.jpg'
 const SITE_URL = 'https://torodevelop.com'
 
 export default function SEO({ title, description, image, url }: SEOProps) {
-  const fullTitle = title ? `${title} | Torodevelopment` : DEFAULT_TITLE
+  const fullTitle = title ? `Torodevelopment | ${title}` : DEFAULT_TITLE
   const metaDescription = description || DEFAULT_DESCRIPTION
   const metaImage = image || DEFAULT_IMAGE
   const metaUrl = url ? `${SITE_URL}${url}` : SITE_URL
