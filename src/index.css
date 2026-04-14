@@ -49,6 +49,7 @@
 }
 
 :root {
+    --glow-color: rgba(29, 78, 216, 0.22);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -84,6 +85,7 @@
 }
 
 .dark {
+    --glow-color: rgba(29, 78, 216, 0.75);
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
