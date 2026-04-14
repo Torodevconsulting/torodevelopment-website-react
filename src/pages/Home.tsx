@@ -5,6 +5,7 @@ import { ArrowRight, Orbit } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import AboutPreview from '@/components/AboutPreview'
 import SEO from '@/components/SEO'
 
 const fadeUp = {
@@ -385,7 +386,10 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
-              <button className="flex items-center justify-center gap-2 border border-[#1d1d1f] dark:border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+              <button
+                onClick={() => navigate('/about')}
+                className="flex items-center justify-center gap-2 border border-[#1d1d1f] dark:border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+              >
                 About Us <ArrowRight size={14} />
               </button>
               <button
@@ -560,6 +564,8 @@ export default function Home() {
 
         </div>
       </section>
+
+      <AboutPreview />
 
       <Footer />
     </div>

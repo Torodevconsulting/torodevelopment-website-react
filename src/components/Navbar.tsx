@@ -32,9 +32,9 @@ export default function Navbar() {
 
         {/* Links + toggle */}
         <div className="flex items-center gap-6 sm:gap-8">
-          <a href="#about" className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
+          <button onClick={() => navigate('/about')} className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
             About Us
-          </a>
+          </button>
           <a href="#services" className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
             Our Services
           </a>
