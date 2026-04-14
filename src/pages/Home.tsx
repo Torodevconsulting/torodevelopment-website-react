@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useInView } from 'motion/react'
 import { useTheme } from 'next-themes'
 import { ArrowRight, Orbit } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -319,6 +321,7 @@ function WavyLines() {
 export default function Home() {
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
+  const navigate = useNavigate()
 
   const leftPanelGradient = isDark
     ? 'linear-gradient(160deg, rgba(29,78,216,0.9) 0%, rgba(7,8,16,1) 70%)'
@@ -379,7 +382,10 @@ export default function Home() {
               <button className="flex items-center justify-center gap-2 border border-[#1d1d1f] dark:border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
                 About Us <ArrowRight size={14} />
               </button>
-              <button className="flex items-center justify-center gap-2 border border-[#1d1d1f]/30 dark:border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f]/70 dark:text-white/70 hover:border-[#1d1d1f] hover:text-[#1d1d1f] dark:hover:border-white dark:hover:text-white transition-colors">
+              <button
+                onClick={() => navigate('/contact')}
+                className="flex items-center justify-center gap-2 border border-[#1d1d1f]/30 dark:border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f]/70 dark:text-white/70 hover:border-[#1d1d1f] hover:text-[#1d1d1f] dark:hover:border-white dark:hover:text-white transition-colors"
+              >
                 Contact Us <ArrowRight size={14} />
               </button>
             </motion.div>
@@ -547,6 +553,8 @@ export default function Home() {
 
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }

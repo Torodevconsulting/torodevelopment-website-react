@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { useTheme } from 'next-themes'
 import { ArrowRight, Loader2 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import { submitLead } from '@/lib/submitLead'
 
 const fadeUp = {
@@ -313,6 +314,8 @@ export default function Contact() {
 
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }
