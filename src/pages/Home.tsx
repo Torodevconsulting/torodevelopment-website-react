@@ -5,6 +5,7 @@ import { ArrowRight, Orbit } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import SEO from '@/components/SEO'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -329,6 +330,11 @@ export default function Home() {
 
   return (
     <div className="bg-[#f5f5f7] dark:bg-[#070810] text-[#1d1d1f] dark:text-white">
+      <SEO
+      title="Web Development & Digital Marketing Agency"
+      description="We craft high-performance, beautifully designed digital experiences for ambitious brands — from startups to enterprise."
+      url="/"
+      />
       <Navbar />
 
       {/* Hero */}

@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { submitLead } from '@/lib/submitLead'
 import { Turnstile } from '@marsidev/react-turnstile'
-
+import SEO from '@/components/SEO'
 
 
 const fadeUp = {
@@ -69,8 +69,12 @@ export default function Contact() {
 
   return (
     <div className="bg-[#f5f5f7] dark:bg-[#070810] text-[#1d1d1f] dark:text-white min-h-screen">
+      <SEO
+        title="Contact"
+        description="Get in touch with Torodevelopment. Tell us about your project and we'll reply within 24 hours."
+        url="/contact"
+      />
       <Navbar />
-
       {/* ── STATIC HERO ─────────────────────────────────────────────── */}
       <section className="relative h-[52vh] min-h-[340px] flex items-end overflow-hidden">
         {/* Gradient mesh background */}
