@@ -93,14 +93,14 @@ export default function About() {
           <motion.span
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
-            className="mb-4 inline-block bg-white/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
+            className="mb-4 inline-block bg-black/8 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white"
           >
             Sobre Nosotros
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65, ease: 'easeOut' }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-white"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-[#1d1d1f] dark:text-white"
           >
             Somos una agencia digital<br className="hidden sm:block" /> que combina estética y rendimiento <br /> para proyectos ambiciosos
           </motion.h1>

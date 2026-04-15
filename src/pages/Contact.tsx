@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import { submitLead } from '@/lib/submitLead'
 import { Turnstile } from '@marsidev/react-turnstile'
 import SEO from '@/components/SEO'
+import { PHONE_PREFIXES } from '@/lib/phonePrefixes'
 
 
 const fadeUp = {
@@ -29,6 +30,7 @@ export default function Contact() {
     : 'linear-gradient(160deg, rgba(29,78,216,0.12) 0%, #f5f5f7 70%)'
 
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [phonePrefix, setPhonePrefix] = useState('+34')
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -50,7 +52,7 @@ export default function Contact() {
     try {
       await submitLead({
         name: form.name,
-        phone: form.phone,
+        phone: `${phonePrefix.split('-')[0]}${form.phone}`,
         email: form.email,
         company: form.company || undefined,
         message: form.message,
@@ -235,15 +237,28 @@ export default function Contact() {
                       <label className="text-xs font-bold uppercase tracking-widest text-[#6e6e73] dark:text-white/50">
                         Teléfono <span className="text-blue-600 dark:text-blue-400">*</span>
                       </label>
-                      <input
-                        name="phone"
-                        type="tel"
-                        required
-                        placeholder="+1 555 000 0000"
-                        value={form.phone}
-                        onChange={handleChange}
-                        className={inputClass}
-                      />
+                      <div className="flex">
+                        <select
+                          value={phonePrefix}
+                          onChange={(e) => setPhonePrefix(e.target.value)}
+                          className="bg-[#f5f5f7] dark:bg-[#070810] border border-black/15 dark:border-white/15 border-r-0 px-2 py-3 text-sm text-[#1d1d1f] dark:text-white focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 transition-colors cursor-pointer"
+                        >
+                          {PHONE_PREFIXES.map(({ code, label }) => (
+                            <option key={code} value={code}>
+                              {label} {code.split('-')[0]}
+                            </option>
+                          ))}
+                        </select>
+                        <input
+                          name="phone"
+                          type="tel"
+                          required
+                          placeholder="612 345 678"
+                          value={form.phone}
+                          onChange={handleChange}
+                          className="flex-1 bg-transparent border border-black/15 dark:border-white/15 px-4 py-3 text-sm text-[#1d1d1f] dark:text-white placeholder-[#6e6e73] dark:placeholder-white/30 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 transition-colors"
+                        />
+                      </div>
                     </div>
                   </div>
 

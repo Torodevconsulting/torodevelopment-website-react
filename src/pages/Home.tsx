@@ -164,7 +164,7 @@ function ServiceCard({ card, i }: { card: { num: string; title: string; desc: st
   return (
     <div
       ref={ref}
-      className="group flex flex-col gap-6 p-6 sm:p-8 lg:p-12 hover:bg-black/3 dark:hover:bg-white/3 transition-colors"
+      className="group flex flex-col gap-6 p-6 sm:p-8 lg:p-12 hover:bg-black/3 dark:hover:bg-blue-600/15 transition-colors"
     >
       {/* Bracket container — expands on scroll */}
       <motion.div
@@ -475,7 +475,7 @@ export default function Home() {
                   custom={i + 1}
                   className="flex flex-1 items-center justify-center px-4 sm:px-6 lg:px-8 py-5 sm:py-6 border-dashed border-white/15 not-last:border-r lg:not-last:border-r-0 border-b lg:border-b-0"
                 >
-                  <span className="text-xs sm:text-sm font-semibold tracking-tight text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors text-center">
+                  <span className="text-sm sm:text-base font-semibold tracking-tight text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors text-center">
                     {name}
                   </span>
                 </motion.div>
