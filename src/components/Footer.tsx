@@ -144,7 +144,7 @@ export default function Footer() {
         {/* CTA col */}
         <div className="flex flex-col gap-4 lg:w-1/4 lg:items-end lg:justify-between">
           <span className="text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white">
-            ¿Listo para empezar?
+            ¿Listo para empezar? Envianos un mensaje y hablemos sobre tu próximo proyecto.
           </span>
           <button
             onClick={() => navigate('/contact')}
