@@ -8,6 +8,9 @@ import { submitLead } from '@/lib/submitLead'
 import { Turnstile } from '@marsidev/react-turnstile'
 import SEO from '@/components/SEO'
 import { PHONE_PREFIXES } from '@/lib/phonePrefixes'
+import CyclingWord from '@/components/CyclingWord'
+
+const CONTACT_WORDS = ['proyecto', 'idea', 'plan', 'visión', 'negocio']
 
 
 const fadeUp = {
@@ -140,7 +143,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
-            className="mb-4 inline-block bg-white/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white dark:text-white"
+            className="mb-4 inline-block bg-white/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-black dark:text-white"
           >
             Contacto
           </motion.span>
@@ -148,9 +151,9 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65, ease: 'easeOut' }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-white"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-black dark:text-white"
           >
-            Construyamos algo<br className="hidden sm:block" /> juntos.
+           Estamos ansiosos por <br className="hidden sm:block" />escucharte.
           </motion.h1>
         </div>
       </section>
@@ -179,7 +182,7 @@ export default function Contact() {
                   viewport={{ once: true }} custom={1}
                   className="mb-6 text-3xl lg:text-4xl font-bold leading-tight text-[#1d1d1f] dark:text-white"
                 >
-                  Cuéntanos sobre<br />tu proyecto.
+                  Cuéntanos sobre<br />tu <CyclingWord words={CONTACT_WORDS} />
                 </motion.h2>
                 <motion.p
                   variants={fadeUp} initial="hidden" whileInView="visible"

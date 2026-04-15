@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence, useInView } from 'motion/react'
+import { useEffect, useRef } from 'react'
+import { motion, useInView } from 'motion/react'
 import { useTheme } from 'next-themes'
 import { ArrowRight, Orbit } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import AboutPreview from '@/components/AboutPreview'
 import SEO from '@/components/SEO'
+import CyclingWord from '@/components/CyclingWord'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -18,35 +19,6 @@ const fadeUp = {
 }
 
 const CYCLING_WORDS = ['creamos', 'diseñamos', 'construimos', 'innovamos']
-
-function CyclingWord() {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex(i => (i + 1) % CYCLING_WORDS.length)
-    }, 4400)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <span className="relative inline-block overflow-hidden align-bottom cursor-pointer select-none" style={{ minWidth: '12ch' }}>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={CYCLING_WORDS[index]}
-          className="inline-block text-blue-400"
-          style={{ cursor: 'pointer', userSelect: 'none' }}
-          initial={{ y: '100%', opacity: 0.4 }}
-          animate={{ y: '0%', opacity: 1 }}
-          exit={{ y: '-100%', opacity: 0.4 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-        >
-          {CYCLING_WORDS[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
 
 function AnimatedIcon({ index, animate }: { index: number; animate: boolean }) {
   const d = (delay: number) => ({
@@ -512,7 +484,7 @@ export default function Home() {
                   viewport={{ once: true }} custom={1}
                   className="mb-6 text-3xl lg:text-4xl font-bold leading-tight text-[#1d1d1f] dark:text-white"
                 >
-                  Escuchamos primero, luego <CyclingWord />
+                  Escuchamos primero, luego <CyclingWord words={CYCLING_WORDS} />
                 </motion.h2>
                 <motion.p
                   variants={fadeUp} initial="hidden" whileInView="visible"
