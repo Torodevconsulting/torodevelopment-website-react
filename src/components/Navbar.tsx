@@ -21,7 +21,7 @@ export default function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 1.4, ease: 'easeOut' }}
     >
-      <nav className="mx-4 sm:mx-10 lg:mx-35 flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 bg-white dark:bg-[#070810] border-b border-black/8 dark:border-white/5">
+      <nav className="mx-0 sm:mx-10 lg:mx-35 flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 bg-white dark:bg-[#070810] border-b border-black/8 dark:border-white/5">
         {/* Logo */}
         <div className="flex items-center gap-2" onClick={() => navigate('/')}>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
