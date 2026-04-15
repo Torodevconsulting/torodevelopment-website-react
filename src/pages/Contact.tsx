@@ -49,6 +49,20 @@ export default function Contact() {
     e.preventDefault()
     setFormState('loading')
     setErrorMsg('')
+    // Validación
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(form.email)) {
+      setFormState('error')
+      setErrorMsg('Introduce un correo electrónico válido.')
+      return
+    }
+    
+    const phoneRegex = /^\d{6,15}$/
+    if (!phoneRegex.test(form.phone)) {
+      setFormState('error')
+      setErrorMsg('El teléfono solo puede contener números (6-15 dígitos).')
+      return
+    }
     try {
       await submitLead({
         name: form.name,
@@ -252,6 +266,7 @@ export default function Contact() {
                         <input
                           name="phone"
                           type="tel"
+                          inputMode="numeric"
                           required
                           placeholder="612 345 678"
                           value={form.phone}
