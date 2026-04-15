@@ -33,10 +33,10 @@ export default function Navbar() {
         {/* Links + toggle */}
         <div className="flex items-center gap-6 sm:gap-8">
           <button onClick={() => navigate('/about')} className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
-            About Us
+            Nosotros
           </button>
           <a href="#services" className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
-            Our Services
+            Servicios
           </a>
 
           {/* Theme toggle */}
@@ -54,7 +54,7 @@ export default function Navbar() {
             onClick={() => navigate('/contact')}
             className="flex items-center gap-2 bg-blue-600 px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors"
           >
-            Contact Us
+            Contáctanos
             <ArrowRight size={12} />
           </button>
         </div>

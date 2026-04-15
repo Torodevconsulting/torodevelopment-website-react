@@ -13,10 +13,10 @@ const fadeUp = {
 }
 
 const STATS = [
-  { value: '3+', label: 'Years of experience' },
-  { value: '20+', label: 'Projects delivered' },
+  { value: '3+', label: 'Años de experiencia' },
+  { value: '20+', label: 'Proyectos entregados' },
   { value: '100%', label: 'Remote-first' },
-  { value: '3', label: 'Core services' },
+  { value: '3', label: 'Servicios principales' },
 ]
 
 export default function AboutPreview() {
@@ -66,21 +66,21 @@ export default function AboutPreview() {
             viewport={{ once: true }} custom={0}
             className="mb-6 inline-block bg-black/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white w-fit"
           >
-            About Us
+            Nosotros
           </motion.span>
           <motion.h2
             variants={fadeUp} initial="hidden" whileInView="visible"
             viewport={{ once: true }} custom={1}
             className="mb-5 text-2xl sm:text-3xl font-bold leading-tight text-[#1d1d1f] dark:text-white"
           >
-            A team that listens,<br />builds, and delivers.
+            Un equipo que escucha,<br />construye y entrega.
           </motion.h2>
           <motion.p
             variants={fadeUp} initial="hidden" whileInView="visible"
             viewport={{ once: true }} custom={2}
             className="mb-8 text-sm leading-relaxed text-[#6e6e73] dark:text-white/55"
           >
-            We are a remote-first digital agency combining web development, performance marketing, and strategic consulting. Every project is treated as a long-term partnership — not a transaction.
+            Somos una agencia digital remote-first que combina desarrollo web, marketing de rendimiento y consultoría estratégica. Cada proyecto se trata como una alianza a largo plazo — no como una transacción.
           </motion.p>
           <motion.button
             variants={fadeUp} initial="hidden" whileInView="visible"
@@ -88,7 +88,7 @@ export default function AboutPreview() {
             onClick={() => navigate('/about')}
             className="flex items-center gap-2 w-fit border border-[#1d1d1f]/40 dark:border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
           >
-            Learn more <ArrowRight size={12} />
+            Saber más <ArrowRight size={12} />
           </motion.button>
         </div>
 

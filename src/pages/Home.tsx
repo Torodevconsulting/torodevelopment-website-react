@@ -17,7 +17,7 @@ const fadeUp = {
   }),
 }
 
-const CYCLING_WORDS = ['build', 'create', 'design', 'work']
+const CYCLING_WORDS = ['creamos', 'diseñamos', 'construimos', 'innovamos']
 
 function CyclingWord() {
   const [index, setIndex] = useState(0)
@@ -30,7 +30,7 @@ function CyclingWord() {
   }, [])
 
   return (
-    <span className="relative inline-block overflow-hidden align-bottom cursor-pointer select-none" style={{ minWidth: '6ch' }}>
+    <span className="relative inline-block overflow-hidden align-bottom cursor-pointer select-none" style={{ minWidth: '12ch' }}>
       <AnimatePresence mode="wait">
         <motion.span
           key={CYCLING_WORDS[index]}
@@ -197,7 +197,7 @@ function ServiceCard({ card, i }: { card: { num: string; title: string; desc: st
 }
 
 const backedBy = ['QUERTIUM.IO', 'W STUDIOS', 'TORNED STRINGS']
-const services = ['Full Stack Development', 'Marketing & Branding', 'AI Solutions', 'Native Apps Development', 'Tracking & Analytics', 'UX/UI Design']
+const services = ['Desarrollo Full Stack', 'Marketing & Branding', 'Soluciones de IA', 'Desarrollo de Apps Nativas', 'Seguimiento & Analytics', 'Diseño UX/UI']
 
 function WavyLines() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -332,8 +332,8 @@ export default function Home() {
   return (
     <div className="bg-[#f5f5f7] dark:bg-[#070810] text-[#1d1d1f] dark:text-white">
       <SEO
-      title="Web Development & Digital Marketing Agency"
-      description="We craft high-performance, beautifully designed digital experiences for ambitious brands — from startups to enterprise."
+      title="Agencia de Desarrollo Web y Marketing Digital"
+      description="Creamos experiencias digitales de alto rendimiento, bellamente diseñadas para marcas ambiciosas — desde startups hasta empresas consolidadas."
       url="/"
       />
       <Navbar />
@@ -365,7 +365,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 1.1, ease: 'easeOut' }}
               className="mb-5 inline-block bg-black px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
             >
-              This is how we roll
+              Así es como trabajamos
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
@@ -379,7 +379,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.55, ease: 'easeOut' }}
               className="mb-10 max-w-xl text-base sm:text-xl leading-relaxed text-[#6e6e73] dark:text-white/50"
             >
-              We craft high-performance, beautifully designed digital experiences for ambitious brands.
+              Creamos experiencias digitales de alto rendimiento, diseñadas con cariño y excelencia para marcas ambiciosas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
@@ -390,13 +390,13 @@ export default function Home() {
                 onClick={() => navigate('/about')}
                 className="flex items-center justify-center gap-2 border border-[#1d1d1f] dark:border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
               >
-                About Us <ArrowRight size={14} />
+                Quiénes somos? <ArrowRight size={14} />
               </button>
               <button
                 onClick={() => navigate('/contact')}
                 className="flex items-center justify-center gap-2 border border-[#1d1d1f]/30 dark:border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f]/70 dark:text-white/70 hover:border-[#1d1d1f] hover:text-[#1d1d1f] dark:hover:border-white dark:hover:text-white transition-colors"
               >
-                Contact Us <ArrowRight size={14} />
+                Queremos saber más de ti <ArrowRight size={14} />
               </button>
             </motion.div>
           </div>
@@ -428,7 +428,7 @@ export default function Home() {
               custom={0}
               className="bg-black/5 dark:bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white"
             >
-              Our Partners
+              Nuestros Colaboradores
             </motion.span>
             <div className="flex flex-col sm:flex-row w-full items-center justify-center divide-y sm:divide-y-0 sm:divide-x divide-dashed divide-black/10 dark:divide-white/15">
               {backedBy.map((name, i) => (
@@ -462,7 +462,7 @@ export default function Home() {
               custom={0}
               className="bg-black/5 dark:bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white"
             >
-              What we do Best
+              Lo que hacemos mejor
             </motion.span>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full divide-dashed divide-black/10 dark:divide-white/15 border border-dashed border-black/10 dark:border-white/15 lg:border-0 lg:divide-x">
               {services.map((name, i) => (
@@ -505,21 +505,21 @@ export default function Home() {
                   viewport={{ once: true }} custom={0}
                   className="mb-6 inline-block bg-black/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white"
                 >
-                  Services
+                  Servicios
                 </motion.span>
                 <motion.h2
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={1}
                   className="mb-6 text-3xl lg:text-4xl font-bold leading-tight text-[#1d1d1f] dark:text-white"
                 >
-                  We listen first, then we <CyclingWord />
+                  Escuchamos primero, luego <CyclingWord />
                 </motion.h2>
                 <motion.p
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={2}
                   className="mb-10 text-base leading-relaxed text-[#6e6e73] dark:text-white/55"
                 >
-                  We offer a full range of digital services shaped around your business — not the other way around. From day one to long-term growth, we're with you every step of the way.
+                  Ofrecemos una gama completa de servicios digitales diseñados en torno a tu negocio — no al revés. Desde el primer día hasta el crecimiento a largo plazo, estamos contigo en cada paso.
                 </motion.p>
                 <motion.button
                   variants={fadeUp} initial="hidden" whileInView="visible"
@@ -527,7 +527,7 @@ export default function Home() {
                   onClick={() => navigate('/contact')}
                   className="flex items-center gap-2 border border-[#1d1d1f]/40 dark:border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                 >
-                  Contact Us <ArrowRight size={12} />
+                  Contáctanos <ArrowRight size={12} />
                 </motion.button>
               </div>
               <div className="hidden lg:block" />
@@ -540,22 +540,22 @@ export default function Home() {
               {
                 num: '01',
                 title: 'PYMES & Startups',
-                desc: 'From zero to visible. Brand identity, web presence, and a digital strategy built from the ground up — everything you need to launch with confidence and grow from day one.',
+                desc: 'Desde cero a total visibilidad. Trabajamos en la identidad de marca, presencia web y estrategia digital construida desde la propuesta de valor. Todo lo que necesitas para lanzar tu visión al mundo y ganar tracción inicial.',
               },
               {
                 num: '02',
-                title: 'Growing Brands & Companies',
-                desc: 'Scale what\'s working. Fix what\'s not. Performance marketing, full-stack development, and strategic consulting to turn a solid foundation into measurable growth.',
+                title: 'Marcas y Empresas en Crecimiento',
+                desc: 'Escalamos lo que funciona y corregimos lo que no. Intervenimos como una consultora estratégica para convertir una base sólida en crecimiento medible y sostenible.',
               },
               {
                 num: '03',
-                title: 'Big Enterprises & Innovators',
-                desc: 'Execution at the level your brand demands. High-performance web products and data-driven paid media campaigns, built with the rigor and autonomy that complex organizations require.',
+                title: 'Grandes Empresas e Innovadores',
+                desc: 'Adaptamos nuestro trabajo al nivel de exigencia de cada proyecto, para que el resultado final esté a la altura de los estándares de vuestros clientes.',
               },
               {
                 num: '04',
-                title: 'Strategy & Consulting',
-                desc: 'Clarity before action. Before building anything, we map where you are, where you want to go, and the most direct route to get there — across digital, brand, and performance.',
+                title: 'Estrategia y Consultoría',
+                desc: 'Analizamos, planificamos y acompañamos la toma de decisiones para que cada acción tenga un propósito claro',
               },
             ].map((card, i) => (
               <ServiceCard key={card.num} card={card} i={i} />

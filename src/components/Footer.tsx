@@ -2,15 +2,15 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '/', internal: true },
-  { label: 'About Us', href: '#about', internal: false },
-  { label: 'Our Services', href: '#services', internal: false },
-  { label: 'Contact', href: '/contact', internal: true },
+  { label: 'Inicio', href: '/', internal: true },
+  { label: 'Nosotros', href: '#about', internal: false },
+  { label: 'Servicios', href: '#services', internal: false },
+  { label: 'Contacto', href: '/contact', internal: true },
 ]
 
 const LEGAL_LINKS = [
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'FAQs', href: '/faqs' },
+  { label: 'Política de privacidad', href: '/privacy' },
+  { label: 'Preguntas frecuentes', href: '/faqs' },
 ]
 
 const SOCIAL_LINKS = [
@@ -73,7 +73,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="text-sm leading-relaxed text-[#6e6e73] dark:text-white/50 max-w-xs">
-            High-performance digital experiences for ambitious brands.
+            Experiencias digitales de alto rendimiento para marcas ambiciosas.
           </p>
           {/* Social links */}
           <div className="flex items-center gap-4">
@@ -144,13 +144,13 @@ export default function Footer() {
         {/* CTA col */}
         <div className="flex flex-col gap-4 lg:w-1/4 lg:items-end lg:justify-between">
           <span className="text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white">
-            Ready to start?
+            ¿Listo para empezar?
           </span>
           <button
             onClick={() => navigate('/contact')}
             className="flex items-center gap-2 bg-blue-600 px-5 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors w-fit"
           >
-            Contact Us <ArrowRight size={12} />
+            Contáctanos <ArrowRight size={12} />
           </button>
         </div>
 
@@ -159,7 +159,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-6 sm:px-10 lg:px-12 py-5">
         <span className="text-xs text-[#6e6e73] dark:text-white/30">
-          © 2026 Torodevelopment. All rights reserved.
+          © 2026 Torodevelopment. Todos los derechos reservados.
         </span>
         <span className="text-xs text-[#6e6e73] dark:text-white/20 hidden sm:block">
           Built with precision. Deployed with care.

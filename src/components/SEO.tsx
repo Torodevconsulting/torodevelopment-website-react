@@ -7,13 +7,13 @@ interface SEOProps {
   url?: string
 }
 
-const DEFAULT_TITLE = 'Torodevelopment — Web & Digital Marketing Agency'
-const DEFAULT_DESCRIPTION = 'We listen first, then we build. Web development and digital marketing services tailored to your business — from startups to enterprise.'
+const DEFAULT_TITLE = 'Toro Development - Agencia Web y Marketing'
+const DEFAULT_DESCRIPTION = 'Creamos experiencias digitales de alto rendimiento, bellamente diseñadas para marcas ambiciosas — desarrollo web, marketing digital y consultoría estratégica.'
 const DEFAULT_IMAGE = 'https://torodevelop.com/og-image.jpg'
 const SITE_URL = 'https://torodevelop.com'
 
 export default function SEO({ title, description, image, url }: SEOProps) {
-  const fullTitle = title ? `Torodevelopment | ${title}` : DEFAULT_TITLE
+  const fullTitle = title ? `Toro Development | ${title}` : DEFAULT_TITLE
   const metaDescription = description || DEFAULT_DESCRIPTION
   const metaImage = image || DEFAULT_IMAGE
   const metaUrl = url ? `${SITE_URL}${url}` : SITE_URL
@@ -31,7 +31,7 @@ export default function SEO({ title, description, image, url }: SEOProps) {
       <meta property="og:image" content={metaImage} />
       <meta property="og:url" content={metaUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Torodevelopment" />
+      <meta property="og:site_name" content="Toro Development" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

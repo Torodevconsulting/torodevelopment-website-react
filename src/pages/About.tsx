@@ -18,23 +18,23 @@ const fadeUp = {
 const VALUES = [
   {
     num: '01',
-    title: 'Listen before building',
-    desc: 'Every project starts with understanding your business, your users, and your goals — not with code. We ask the hard questions so we can build the right thing.',
+    title: 'Escuchar antes de construir',
+    desc: 'Cada proyecto comienza entendiendo tu negocio, tus usuarios y tus objetivos — no con código. Hacemos las preguntas difíciles para poder construir lo correcto.',
   },
   {
     num: '02',
-    title: 'Craft over speed',
-    desc: 'We are deliberate about quality. From architecture to pixel-level details, we believe the extra mile is what separates good products from great ones.',
+    title: 'Calidad sobre velocidad',
+    desc: 'Somos deliberados en cuanto a la calidad. Desde la arquitectura hasta los detalles a nivel de píxel, creemos que el esfuerzo extra es lo que separa los buenos productos de los excelentes.',
   },
   {
     num: '03',
-    title: 'Transparency always',
-    desc: 'No black boxes. You have full visibility into timelines, decisions, and trade-offs. We communicate early, honestly, and often.',
+    title: 'Transparencia siempre',
+    desc: 'Sin cajas negras. Tienes visibilidad total sobre plazos, decisiones y compromisos. Comunicamos de manera temprana, honesta y frecuente.',
   },
   {
     num: '04',
-    title: 'Long-term thinking',
-    desc: 'We build for what you need now and what you will need later. Scalable architecture, maintainable code, and sustainable growth strategies.',
+    title: 'Visión a largo plazo',
+    desc: 'Construimos para lo que necesitas ahora y lo que necesitarás después. Arquitectura escalable, código mantenible y estrategias de crecimiento sostenible.',
   },
 ]
 
@@ -50,8 +50,8 @@ export default function About() {
   return (
     <div className="bg-[#f5f5f7] dark:bg-[#070810] text-[#1d1d1f] dark:text-white min-h-screen">
       <SEO
-        title="About Us"
-        description="We are Torodevelopment — a remote-first digital agency building high-performance web products and growth strategies for ambitious brands."
+        title="Nosotros"
+        description="Somos Torodevelopment — una agencia digital remote-first que construye productos web de alto rendimiento y estrategias de crecimiento para marcas ambiciosas."
         url="/about"
       />
       <Navbar />
@@ -95,14 +95,14 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
             className="mb-4 inline-block bg-white/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white"
           >
-            About Us
+            Sobre Nosotros
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65, ease: 'easeOut' }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-white"
           >
-            We are builders,<br className="hidden sm:block" /> strategists, and partners.
+            Somos una agencia digital<br className="hidden sm:block" /> que combina estética y rendimiento <br /> para proyectos ambiciosos
           </motion.h1>
         </div>
       </section>
@@ -124,28 +124,30 @@ export default function About() {
                   viewport={{ once: true }} custom={0}
                   className="mb-6 inline-block bg-black/10 dark:bg-black/40 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white"
                 >
-                  Who we are
+                  Nuestra historia 
                 </motion.span>
                 <motion.h2
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={1}
                   className="mb-6 text-3xl lg:text-4xl font-bold leading-tight text-[#1d1d1f] dark:text-white"
                 >
-                  A remote-first<br />digital agency.
+                  Una agencia digital<br />remote-first.
                 </motion.h2>
                 <motion.p
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={2}
-                  className="mb-6 text-base leading-relaxed text-[#6e6e73] dark:text-white/55"
+                  className="mb-6 text-base leading-relaxed text-[#6e6e73] dark:text-white/80"
                 >
-                  Torodevelopment was founded on a simple belief: the best digital work comes from deep collaboration between a team that genuinely cares and clients who are serious about growing.
+                  Torodevelopment nació con una convicción simple: Crear activos digitales para las empresas con estetica visual que refleje la calidad de su oferta sin importar el tamaño del negocio, el servicio prestado o el producto de la empresa.
+                  Cuando tenemos en cuenta la estética y la mezclamos con la funcionalidad adaptada a la propuesta de valor de cada marca, mas las necesidades de sus usuarios, el resultado es una experiencia digital que no solo se ve bien, sino que también impulsa resultados reales
+                  .
                 </motion.p>
                 <motion.p
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={3}
-                  className="mb-10 text-base leading-relaxed text-[#6e6e73] dark:text-white/55"
+                  className="mb-10 text-base leading-relaxed text-[#6e6e73] dark:text-white/80"
                 >
-                  We work with startups, growing companies, and enterprises across web development, digital marketing, and strategic consulting — always remote, always focused.
+                  Nos da igual si tu proyecto es pequeñito o es muy grande, lo que importa es que sea ambicioso. Nos encanta trabajar con marcas que tienen una visión clara de lo que quieren lograr y que entienden el valor de una experiencia digital bien diseñada para alcanzar sus objetivos.
                 </motion.p>
                 <motion.button
                   variants={fadeUp} initial="hidden" whileInView="visible"
@@ -153,7 +155,7 @@ export default function About() {
                   onClick={() => navigate('/contact')}
                   className="flex items-center gap-2 border border-[#1d1d1f]/40 dark:border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                 >
-                  Work with us <ArrowRight size={12} />
+                  Trabaja con nosotros <ArrowRight size={12} />
                 </motion.button>
               </div>
               <div className="hidden lg:block" />
@@ -175,7 +177,7 @@ export default function About() {
                 <h3 className="text-lg font-bold uppercase tracking-wide text-[#1d1d1f] dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-[#6e6e73] dark:text-white/55">
+                <p className="text-base leading-relaxed text-[#8e8e93] dark:text-white/80">
                   {item.desc}
                 </p>
               </motion.div>
