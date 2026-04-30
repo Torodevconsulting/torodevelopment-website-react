@@ -3,8 +3,8 @@ import { ArrowRight } from 'lucide-react'
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/', internal: true },
-  { label: 'Nosotros', href: '#about', internal: false },
-  { label: 'Servicios', href: '#services', internal: false },
+  { label: 'Nosotros', href: '/about', internal: true },
+  { label: 'Servicios', href: '/services', internal: true },
   { label: 'Contacto', href: '/contact', internal: true },
 ]
 
