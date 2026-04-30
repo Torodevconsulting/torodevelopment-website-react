@@ -18,12 +18,24 @@ export default function SEO({ title, description, image, url }: SEOProps) {
   const metaImage = image || DEFAULT_IMAGE
   const metaUrl = url ? `${SITE_URL}${url}` : SITE_URL
 
+  const webPageSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${metaUrl}#webpage`,
+    'url': metaUrl,
+    'name': fullTitle,
+    'description': metaDescription,
+    'inLanguage': 'es',
+    'isPartOf': { '@id': 'https://torodevelop.com/#website' },
+  })
+
   return (
     <Helmet>
       {/* Basic */}
       <title>{fullTitle}</title>
       <meta name="description" content={metaDescription} />
       <link rel="canonical" href={metaUrl} />
+      <script type="application/ld+json">{webPageSchema}</script>
 
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
