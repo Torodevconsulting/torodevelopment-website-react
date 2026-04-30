@@ -33,6 +33,7 @@ export default function Contact() {
     : 'linear-gradient(160deg, rgba(29,78,216,0.12) 0%, #f5f5f7 70%)'
 
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [turnstileReady, setTurnstileReady] = useState(false)
   const [phonePrefix, setPhonePrefix] = useState('+34')
   const [form, setForm] = useState({
     name: '',
@@ -233,7 +234,7 @@ export default function Contact() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+                <form onSubmit={handleSubmit} noValidate onFocus={() => setTurnstileReady(true)} className="flex flex-col gap-5">
                   {/* Name + Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="flex flex-col gap-1.5">
@@ -333,10 +334,12 @@ export default function Contact() {
                   )}
 
                   {/* Submit */}
-                  <Turnstile
+                  {turnstileReady && (
+                    <Turnstile
                       siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
                       onSuccess={(token) => setTurnstileToken(token)}
                     />
+                  )}
                   <div className="flex items-center justify-between pt-2">
                     <p className="text-xs text-[#6e6e73] dark:text-white/30">
                       <span className="text-blue-600 dark:text-blue-400">*</span> Campos requeridos
