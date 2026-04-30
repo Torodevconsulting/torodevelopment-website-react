@@ -359,13 +359,13 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <button
-                onClick={() => navigate('/about')}
+                onClick={() => navigate('/nosotros')}
                 className="flex items-center justify-center gap-2 border border-[#1d1d1f] dark:border-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
               >
                 Quiénes somos? <ArrowRight size={14} />
               </button>
               <button
-                onClick={() => navigate('/contact')}
+                onClick={() => navigate('/contacto')}
                 className="flex items-center justify-center gap-2 border border-[#1d1d1f]/30 dark:border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-[#1d1d1f]/70 dark:text-white/70 hover:border-[#1d1d1f] hover:text-[#1d1d1f] dark:hover:border-white dark:hover:text-white transition-colors"
               >
                 Queremos saber más de ti <ArrowRight size={14} />
@@ -496,7 +496,7 @@ export default function Home() {
                 <motion.button
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={3}
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/contacto')}
                   className="flex items-center gap-2 border border-[#1d1d1f]/40 dark:border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                 >
                   Contáctanos <ArrowRight size={12} />

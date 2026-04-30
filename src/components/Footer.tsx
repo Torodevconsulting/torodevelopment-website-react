@@ -3,9 +3,9 @@ import { ArrowRight } from 'lucide-react'
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/', internal: true },
-  { label: 'Nosotros', href: '/about', internal: true },
-  { label: 'Servicios', href: '/services', internal: true },
-  { label: 'Contacto', href: '/contact', internal: true },
+  { label: 'Nosotros', href: '/nosotros', internal: true },
+  { label: 'Servicios', href: '/servicios', internal: true },
+  { label: 'Contacto', href: '/contacto', internal: true },
 ]
 
 const LEGAL_LINKS = [
@@ -147,7 +147,7 @@ export default function Footer() {
             ¿Listo para empezar? Envianos un mensaje y hablemos sobre tu próximo proyecto.
           </span>
           <button
-            onClick={() => navigate('/contact')}
+            onClick={() => navigate('/contacto')}
             className="flex items-center gap-2 bg-blue-600 px-5 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors w-fit"
           >
             Contáctanos <ArrowRight size={12} />

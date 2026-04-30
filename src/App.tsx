@@ -14,9 +14,9 @@ export default function App() {
       <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/contacto" element={<Contact />} />
+          <Route path="/nosotros" element={<About />} />
+          <Route path="/servicios" element={<Services />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

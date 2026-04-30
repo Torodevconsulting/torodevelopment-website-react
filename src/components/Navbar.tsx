@@ -32,10 +32,10 @@ export default function Navbar() {
 
         {/* Links + toggle */}
         <div className="flex items-center gap-6 sm:gap-8">
-          <button onClick={() => navigate('/about')} className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
+          <button onClick={() => navigate('/nosotros')} className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
             Nosotros
           </button>
-          <button onClick={() => navigate('/services')} className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
+          <button onClick={() => navigate('/servicios')} className="hidden sm:block text-xs font-medium tracking-widest uppercase text-[#6e6e73] dark:text-white/60 hover:text-[#1d1d1f] dark:hover:text-white transition-colors">
             Servicios
           </button>
 
@@ -51,7 +51,7 @@ export default function Navbar() {
           )}
 
           <button
-            onClick={() => navigate('/contact')}
+            onClick={() => navigate('/contacto')}
             className="flex items-center gap-2 bg-blue-600 px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-blue-500 transition-colors"
           >
             Contáctanos

@@ -68,7 +68,7 @@ export default function Services() {
       <SEO
         title="Servicios"
         description="Desarrollo web, marketing digital, inteligencia artificial, apps móviles y diseño UX/UI — soluciones digitales completas para PYMEs y empresas en crecimiento."
-        url="/services"
+        url="/servicios"
       />
       <Navbar />
 
@@ -163,7 +163,7 @@ export default function Services() {
                 <motion.button
                   variants={fadeUp} initial="hidden" whileInView="visible"
                   viewport={{ once: true }} custom={4}
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/contacto')}
                   className="flex items-center gap-2 border border-[#1d1d1f]/40 dark:border-white/50 px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1d1d1f] dark:text-white hover:bg-[#1d1d1f] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                 >
                   Cuéntanos tu proyecto <ArrowRight size={12} />

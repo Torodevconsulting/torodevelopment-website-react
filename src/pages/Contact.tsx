@@ -92,7 +92,7 @@ export default function Contact() {
       <SEO
         title="Contacto"
         description="Ponte en contacto con Torodevelopment. Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas."
-        url="/contact"
+        url="/contacto"
       />
       <Navbar />
       {/* ── STATIC HERO ─────────────────────────────────────────────── */}
