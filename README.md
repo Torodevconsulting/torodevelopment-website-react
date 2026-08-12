@@ -20,8 +20,10 @@ Marketing and agency website for Torodevelopment — built with React, TypeScrip
 | Route | Description |
 |-------|-------------|
 | `/` | Home — hero, partners, services |
-| `/contact` | Contact form with Turnstile |
-| `/privacy` | Privacy policy *(pending)* |
+| `/nosotros` | About — story and values |
+| `/servicios` | Services |
+| `/contacto` | Contact form with Turnstile |
+| `/privacidad` | Privacy policy (GDPR) |
 | `/faqs` | FAQ *(pending)* |
 
 
@@ -54,7 +56,10 @@ src/
 │   └── utils.ts
 └── pages/
     ├── Home.tsx
-    └── Contact.tsx
+    ├── About.tsx
+    ├── Services.tsx
+    ├── Contact.tsx
+    └── Privacy.tsx
 public/
 ├── sitemap.xml
 └── robots.txt

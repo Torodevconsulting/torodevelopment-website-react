@@ -9,7 +9,7 @@ const NAV_LINKS = [
 ]
 
 const LEGAL_LINKS = [
-  { label: 'Política de privacidad', href: '/privacy' },
+  { label: 'Política de privacidad', href: '/privacidad' },
   { label: 'Preguntas frecuentes', href: '/faqs' },
 ]
 
